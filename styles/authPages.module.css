@@ -1,0 +1,269 @@
+.authPageWrapper {
+  /* height: calc(100vh - 97px); */
+  height: calc(100dvh - 0px);
+  display: grid;
+  place-items: center;
+  /* max-width: 740px; */
+  margin: auto;
+  font-family: "Satoshi-Variable", sans-serif;
+  padding-inline: 32px;
+  /* border-radius: 16px; */
+  background: #fff;
+}
+
+.heading {
+  margin-bottom: 40px;
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #000000 !important;
+}
+
+.heading {
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+/* .loginwrap {
+  width: 100%;
+  max-width: 800px;
+} */
+
+.googleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #101828;
+  border: 1px solid #E4EDFC;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  height: 53px;
+  background-color: #fff;
+}
+
+.googleBtn2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #101828;
+  border: 1px solid #DDE1E7;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  height: 44px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.googleBtn2:hover {
+  border-color: #70A0F7;
+}
+
+.authFormField {
+  border: 1px solid #d5d4d4;
+  border-radius: 8px;
+}
+
+.orLine {
+  position: relative;
+  text-align: center;
+  margin-block: 20px;
+
+  .loginWithtext {
+    font-size: 14px;
+    background-color: white;
+    padding-inline: 15px;
+  }
+}
+
+.loginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #101828;
+  border: 1px solid #DDE1E7;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  height: 44px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+.loginBtn:hover {
+  border-color: #70A0F7;
+
+}
+
+.orLine:after {
+  content: "";
+  background-color: #e4e5e7;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  /* z-index: -1; */
+}
+
+.label {
+  color: #171717;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+  text-transform: capitalize;
+}
+
+.passwordWrap {
+  margin-top: 16px;
+  position: relative;
+}
+
+.passwordWrap .eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.passwordWrap input {
+  position: relative;
+}
+
+.forgotText {
+  color: #4e29a3;
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-top: 9px;
+  text-align: right;
+}
+
+.signInBtn {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.signInBtn button {
+  background-color: #0755E9;
+  color: #fff;
+  padding: 12px 32px;
+  font-size: 14px;
+  border: 0;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signInBtn button:hover {
+  background-color: #0755E9;
+  color: #fff;
+}
+
+.signInBtn a {
+  background-color: #0755E9;
+  color: #fff;
+  padding: 12px 32px;
+  font-size: 14px;
+  border: 0;
+  outline: none;
+  border-radius: 8px;
+}
+
+.noAcc {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.noAcc span {
+  color: #0755E9;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+.passReq {
+  margin-block: 16px;
+}
+
+.requirementMatched path {
+  stroke: #1f7a2e;
+}
+
+.passReq p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.signInUp {
+  display: flex;
+  justify-content: center;
+  color: #0755E9;
+  margin-top: 40px;
+  gap: 6px;
+}
+
+.passSent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.passSent h3 {
+  color: #101828;
+  font-size: 24px;
+}
+
+.passSent p {
+  color: #000000;
+  font-size: 14px;
+}
+
+.gobackBtn {
+  background-color: #f1f1f2;
+  border-radius: 4px;
+  color: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 40px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.valid {
+  color: #1f7a2e !important;
+}
+
+.passwordField {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 2%;
+  top: 52%;
+  cursor: pointer;
+}

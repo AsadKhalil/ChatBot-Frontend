@@ -1,0 +1,101 @@
+/* NavigationBar.module.css */
+.navigation-bar {
+  position: fixed;
+  /* Fix the navbar to the left side */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid #E4E5E7;
+  z-index: 9;
+
+  .title {
+    color: #000;
+    font-size: 22px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    margin-left: 10px;
+    text-align: center;
+  }
+}
+
+.navigation-bar hr {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  color: #e0e0e0;
+  font-size: 45px;
+}
+
+.navigation-bar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* width: 100%; */
+  display: flex;
+  max-width: fit-content;
+  margin: 0 auto;
+  margin-left: 0;
+}
+
+.navigation-bar li {
+  /* margin-bottom: 10px; */
+  /* background-color: #EFEBFA; */
+  border-radius: 8px;
+  color: #18191B;
+
+}
+
+.navigationBar a {
+  text-decoration: none;
+  color: #18191B;
+  padding: 8px 15px;
+  display: block;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  gap: 5px;
+}
+
+
+.navigationBar li.active a {
+  color: #6133CC;
+  background-color: #EFEBFA;
+}
+
+.navigationBar li.active svg path {
+  fill: #4E29A3;
+}
+
+
+.navigationBar li.active .pitch path {
+  stroke: #4E29A3 !important;
+  fill: transparent;
+}
+
+.img {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu {
+  border: none;
+  background-color: transparent;
+  margin-left: 60px;
+}

@@ -17,7 +17,7 @@ const instance = axios.create({
   // baseURL: "https://api-nixon-profitoptics.insphere.ai/",
   // baseURL: "https://excited-regular-worm.ngrok-free.app/",
   // baseURL: "https://immortal-jolly-catfish.ngrok-free.app/",
-  baseURL: "http://localhost:8000/",
+  // baseURL: "http://localhost:8000/",
   headers: {
     "ngrok-skip-browser-warning": true,
     "Access-Control-Allow-Origin": "*",

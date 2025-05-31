@@ -27,6 +27,8 @@ const sidebarItems = [
 
 type ChatMessage = { role: "user" | "ai"; content: string };
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9000";
+
 export default function Home() {
   const [input, setInput] = useState("");
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
@@ -49,7 +51,7 @@ export default function Home() {
         }
         return acc;
       }, []);
-      const res = await axios.post("http://localhost:8000/generate", {
+      const res = await axios.post(`${API_URL}/generate`, {
         input,
         chat_history: formattedHistory,
         convo_id: convoId,

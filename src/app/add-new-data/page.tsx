@@ -23,6 +23,8 @@ const sidebarItems = [
   { text: "Manage Data", icon: <ManageAccountsIcon /> },
 ];
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9000";
+
 export default function AddNewDataPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -67,7 +69,7 @@ export default function AddNewDataPage() {
     const formData = new FormData();
     formData.append("files", selectedFile);
     try {
-      const res = await fetch("http://localhost:8000/create_knowledge_base", {
+      const res = await fetch(`${API_URL}/create_knowledge_base`, {
         method: "POST",
         body: formData,
       });

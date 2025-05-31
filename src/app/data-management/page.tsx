@@ -37,6 +37,8 @@ const sidebarItems = [
   { text: "Manage Data", icon: <ManageAccountsIcon /> },
 ];
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9000";
+
 export default function DataManagementPage() {
   const [files, setFiles] = useState<FileData[]>([]);
   const [loading, setLoading] = useState(false);
@@ -56,7 +58,7 @@ export default function DataManagementPage() {
   const fetchFiles = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:8000/list-files");
+      const res = await axios.get(`${API_URL}/list-files`);
       setFiles(res.data || []);
     } catch (e) {
       setFiles([]);
@@ -69,7 +71,7 @@ export default function DataManagementPage() {
     if (!deleteDialog.file) return;
     setActionLoading(true);
     try {
-      await axios.post("http://localhost:8000/delete-file", { file_name: deleteDialog.file });
+      await axios.post(`${API_URL}/delete-file`, { file_name: deleteDialog.file });
       setDeleteDialog({ open: false });
       fetchFiles();
     } catch (e) {
@@ -83,7 +85,7 @@ export default function DataManagementPage() {
     if (!toggleDialog.file) return;
     setActionLoading(true);
     try {
-      await axios.post("http://localhost:8000/file-active-toggle", {
+      await axios.post(`${API_URL}/file-active-toggle`, {
         file_name: toggleDialog.file,
         active: !toggleDialog.active,
       });

@@ -16,6 +16,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { useRouter } from "next/navigation";
 import CircularProgress from '@mui/material/CircularProgress';
+import Image from "next/image";
 
 const drawerWidth = 260;
 
@@ -38,7 +39,7 @@ export default function Home() {
 
   const handleSend = async () => {
     if (!input.trim()) return;
-    const userMessage = { role: "user", content: input };
+    const userMessage: ChatMessage = { role: "user", content: input };
     setChatHistory((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
@@ -61,7 +62,7 @@ export default function Home() {
         { role: "ai", content: res.data.response || "No response" },
       ]);
       if (res.data.convo_id) setConvoId(res.data.convo_id);
-    } catch (_err) {
+    } catch {
       setChatHistory((prev) => [
         ...prev,
         { role: "ai", content: "Error: Could not get response from server." },
@@ -88,7 +89,7 @@ export default function Home() {
         }}
       >
         <Box sx={{ p: 2, display: "flex", alignItems: "center" }}>
-          <img src="/favicon.ico" alt="Insphere Logo" width={32} height={32} style={{ marginRight: 8 }} />
+          <Image src="/favicon.ico" alt="Insphere Logo" width={32} height={32} style={{ marginRight: 8 }} />
           <Typography variant="h6" fontWeight={700} color="primary">Insphere</Typography>
         </Box>
         <Divider />
@@ -111,7 +112,7 @@ export default function Home() {
         {/* Header */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img src="/favicon.ico" alt="Insphere Logo" width={32} height={32} style={{ marginRight: 8 }} />
+            <Image src="/favicon.ico" alt="Insphere Logo" width={32} height={32} style={{ marginRight: 8 }} />
             <Typography variant="h5" fontWeight={700}>Insphere</Typography>
           </Box>
           <Button variant="contained" color="primary" sx={{ borderRadius: 8, textTransform: "none" }} onClick={() => { setChatHistory([]); setConvoId(null); }}>

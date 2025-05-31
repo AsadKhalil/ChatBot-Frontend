@@ -60,7 +60,7 @@ export default function DataManagementPage() {
     try {
       const res = await axios.get(`${API_URL}/list-files`);
       setFiles(res.data || []);
-    } catch (e) {
+    } catch {
       setFiles([]);
     } finally {
       setLoading(false);
@@ -74,7 +74,7 @@ export default function DataManagementPage() {
       await axios.post(`${API_URL}/delete-file`, { file_name: deleteDialog.file });
       setDeleteDialog({ open: false });
       fetchFiles();
-    } catch (e) {
+    } catch {
       setDeleteDialog({ open: false });
     } finally {
       setActionLoading(false);
@@ -91,7 +91,7 @@ export default function DataManagementPage() {
       });
       setToggleDialog({ open: false });
       fetchFiles();
-    } catch (e) {
+    } catch {
       setToggleDialog({ open: false });
     } finally {
       setActionLoading(false);
@@ -177,7 +177,7 @@ export default function DataManagementPage() {
                             <IconButton
                               size="small"
                               onClick={() => {
-                                setPreviewUrl(file.url);
+                                setPreviewUrl(file.url ?? null);
                                 setPreviewOpen(true);
                               }}
                               sx={{ ml: 1 }}
@@ -225,7 +225,7 @@ export default function DataManagementPage() {
           {/* Delete Dialog */}
           <Dialog open={deleteDialog.open} onClose={() => setDeleteDialog({ open: false })}>
             <DialogTitle>Confirm Deletion</DialogTitle>
-            <DialogContent>Are you sure you want to delete the file "{deleteDialog.file}"?</DialogContent>
+            <DialogContent>Are you sure you want to delete the file &quot;{deleteDialog.file}&quot;?</DialogContent>
             <DialogActions>
               <Button onClick={() => setDeleteDialog({ open: false })} disabled={actionLoading}>Cancel</Button>
               <Button color="error" onClick={handleDelete} disabled={actionLoading}>{actionLoading ? "Deleting..." : "Delete"}</Button>
@@ -234,7 +234,7 @@ export default function DataManagementPage() {
           {/* Toggle Status Dialog */}
           <Dialog open={toggleDialog.open} onClose={() => setToggleDialog({ open: false })}>
             <DialogTitle>Confirm Status Change</DialogTitle>
-            <DialogContent>Are you sure you want to {toggleDialog.active ? "deactivate" : "activate"} the file "{toggleDialog.file}"?</DialogContent>
+            <DialogContent>Are you sure you want to {toggleDialog.active ? "deactivate" : "activate"} the file &quot;{toggleDialog.file}&quot;?</DialogContent>
             <DialogActions>
               <Button onClick={() => setToggleDialog({ open: false })} disabled={actionLoading}>Cancel</Button>
               <Button onClick={handleToggle} disabled={actionLoading}>{actionLoading ? "Updating..." : toggleDialog.active ? "Deactivate" : "Activate"}</Button>

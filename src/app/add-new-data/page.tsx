@@ -79,7 +79,7 @@ export default function AddNewDataPage() {
       } else {
         setError("Upload failed. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("Upload failed. Please try again.");
     } finally {
       setUploading(false);
@@ -126,7 +126,7 @@ export default function AddNewDataPage() {
       <Box sx={{ flex: 1, display: "flex", flexDirection: "column", p: 4, bgcolor: "#f6f8fc" }}>
         <Box sx={{ bgcolor: "#fff", borderRadius: 2, p: 4, boxShadow: 1, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           <Typography variant="h5" fontWeight={700} mb={1} align="center">Add Data To Knowledge Base</Typography>
-          <Typography color="text.secondary" mb={3} align="center">Upload files to augment your bot's knowledge base.</Typography>
+          <Typography color="text.secondary" mb={3} align="center">Upload files to augment your bot&apos;s knowledge base.</Typography>
           <Box
             onDrop={handleDrop}
             onDragOver={handleDragOver}

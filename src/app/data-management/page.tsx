@@ -213,15 +213,29 @@ export default function DataManagementPage() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2, minWidth: 300 }}>
-              <Typography variant="body2" color="text.secondary">
+            <Box 
+              sx={{ 
+                display: "flex", 
+                justifyContent: "space-between", 
+                alignItems: "center", 
+                p: 2, 
+                minWidth: 300, 
+                borderTop: '1px solid #e3e6ef', 
+                mt: 2, 
+                bgcolor: '#fafbfc',
+                position: 'sticky',
+                bottom: 0,
+                zIndex: 2
+              }}
+            >
+              <Typography variant="body2" color="text.secondary" sx={{ fontSize: 13, opacity: 0.8 }}>
                 Showing {files.length} of {totalCount} filtered row(s) ({totalCountAll} total).
               </Typography>
-              <Box sx={{ position: 'relative', right: 0 }}>
-                <IconButton onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <IconButton onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0} size="large">
                   <ChevronLeftIcon />
                 </IconButton>
-                <IconButton onClick={() => setPage(p => (p + 1 < Math.ceil(totalCount / limit) ? p + 1 : p))} disabled={page + 1 >= Math.ceil(totalCount / limit)}>
+                <IconButton onClick={() => setPage(p => (p + 1 < Math.ceil(totalCount / limit) ? p + 1 : p))} disabled={page + 1 >= Math.ceil(totalCount / limit)} size="large">
                   <ChevronRightIcon />
                 </IconButton>
               </Box>
@@ -251,7 +265,7 @@ export default function DataManagementPage() {
             <Box sx={{ p: 2 }}>
               {previewUrl && (
                 <iframe
-                  src={`https://docs.google.com/viewer?url=${encodeURIComponent(previewUrl)}&embedded=true`}
+                  src={previewUrl}
                   width="100%"
                   height="600px"
                   style={{ border: "none" }}

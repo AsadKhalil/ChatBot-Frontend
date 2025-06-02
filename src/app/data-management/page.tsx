@@ -155,7 +155,7 @@ export default function DataManagementPage() {
             />
           </Box>
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
-            <TableContainer>
+            <TableContainer sx={{ overflowX: 'auto' }}>
               <Table>
                 <TableHead>
                   <TableRow sx={{ background: "#E6EFFF" }}>
@@ -211,11 +211,11 @@ export default function DataManagementPage() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2 }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2, minWidth: 300 }}>
               <Typography variant="body2" color="text.secondary">
                 Showing {files.length} of {totalCount} row(s).
               </Typography>
-              <Box>
+              <Box sx={{ position: 'relative', right: 0 }}>
                 <IconButton onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}>
                   <ChevronLeftIcon />
                 </IconButton>

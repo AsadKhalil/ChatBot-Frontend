@@ -46,6 +46,7 @@ export default function DataManagementPage() {
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [limit, setLimit] = useState(PAGE_SIZE);
+  const [totalCountAll, setTotalCountAll] = useState(0);
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; file?: string }>({ open: false });
   const [toggleDialog, setToggleDialog] = useState<{ open: boolean; file?: string; active?: boolean }>({ open: false });
   const [actionLoading, setActionLoading] = useState(false);
@@ -66,6 +67,7 @@ export default function DataManagementPage() {
       setFiles(res.data.files || []);
       setTotalCount(res.data.count || 0);
       setLimit(res.data.limit || PAGE_SIZE);
+      setTotalCountAll(res.data.total_count || 0);
     } catch {
       setFiles([]);
       setTotalCount(0);
@@ -213,7 +215,7 @@ export default function DataManagementPage() {
             </TableContainer>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2, minWidth: 300 }}>
               <Typography variant="body2" color="text.secondary">
-                Showing {files.length} of {totalCount} row(s).
+                Showing {files.length} of {totalCount} filtered row(s) ({totalCountAll} total).
               </Typography>
               <Box sx={{ position: 'relative', right: 0 }}>
                 <IconButton onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}>

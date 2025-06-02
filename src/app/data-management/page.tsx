@@ -44,6 +44,8 @@ export default function DataManagementPage() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [limit, setLimit] = useState(PAGE_SIZE);
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; file?: string }>({ open: false });
   const [toggleDialog, setToggleDialog] = useState<{ open: boolean; file?: string; active?: boolean }>({ open: false });
   const [actionLoading, setActionLoading] = useState(false);
@@ -53,15 +55,20 @@ export default function DataManagementPage() {
 
   useEffect(() => {
     fetchFiles();
-  }, []);
+  }, [page, limit, search]);
 
   const fetchFiles = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${API_URL}/list-files`);
-      setFiles(res.data || []);
+      const params: Record<string, string | number> = { limit, offset: page * limit };
+      if (search) params.search = search;
+      const res = await axios.get(`${API_URL}/list-files`, { params });
+      setFiles(res.data.files || []);
+      setTotalCount(res.data.count || 0);
+      setLimit(res.data.limit || PAGE_SIZE);
     } catch {
       setFiles([]);
+      setTotalCount(0);
     } finally {
       setLoading(false);
     }
@@ -97,10 +104,6 @@ export default function DataManagementPage() {
       setActionLoading(false);
     }
   };
-
-  // Filter and paginate
-  const filteredFiles = files.filter(f => f.filename.toLowerCase().includes(search.toLowerCase()));
-  const pagedFiles = filteredFiles.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
   return (
     <Box sx={{ display: "flex", height: "100vh", bgcolor: "#f6f8fc" }}>
@@ -165,9 +168,9 @@ export default function DataManagementPage() {
                 <TableBody>
                   {loading ? (
                     <TableRow><TableCell colSpan={4} align="center"><CircularProgress /></TableCell></TableRow>
-                  ) : pagedFiles.length === 0 ? (
+                  ) : files.length === 0 ? (
                     <TableRow><TableCell colSpan={4} align="center">No results.</TableCell></TableRow>
-                  ) : pagedFiles.map((file) => (
+                  ) : files.map((file) => (
                     <TableRow key={file.filename}>
                       <TableCell>
                         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -210,13 +213,13 @@ export default function DataManagementPage() {
             </TableContainer>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2 }}>
               <Typography variant="body2" color="text.secondary">
-                Showing {pagedFiles.length} of {filteredFiles.length} row(s).
+                Showing {files.length} of {totalCount} row(s).
               </Typography>
               <Box>
                 <IconButton onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}>
                   <ChevronLeftIcon />
                 </IconButton>
-                <IconButton onClick={() => setPage(p => (p + 1 < Math.ceil(filteredFiles.length / PAGE_SIZE) ? p + 1 : p))} disabled={page + 1 >= Math.ceil(filteredFiles.length / PAGE_SIZE)}>
+                <IconButton onClick={() => setPage(p => (p + 1 < Math.ceil(totalCount / limit) ? p + 1 : p))} disabled={page + 1 >= Math.ceil(totalCount / limit)}>
                   <ChevronRightIcon />
                 </IconButton>
               </Box>
